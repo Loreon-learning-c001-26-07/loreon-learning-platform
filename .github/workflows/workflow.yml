@@ -1,8 +1,6 @@
 name: loreon workflow
 
-on: 
-    push:
-    workflow_dispatch:
+on: push
 
 jobs:
     first_job:
