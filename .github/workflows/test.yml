@@ -1,0 +1,19 @@
+
+name: test_deployment
+
+on: push 
+
+jobs: 
+    install-firewalld:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: update linux machine
+              run: echo "updating machine"
+
+            - name: update linux machine
+              run: sudo apt install -y firewalld
+
+            - name: update linux machine
+              run: sudo apt install -y mysql-server
+            
+

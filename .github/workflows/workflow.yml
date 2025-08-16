@@ -1,11 +1,11 @@
-name: loreon workflow
+name: loreon workflow.  #workflow name 
 
 on: push
 
-jobs:
+jobs:                   #jobs: task you want to acomplish 
     first_job:
         runs-on: ubuntu-latest
-        steps: 
+        steps:                        #steps: actions that help complete a task 
             - name: checkout Repo
               uses: actions/checkout@v5
 
