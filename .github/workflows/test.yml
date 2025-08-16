@@ -7,8 +7,9 @@ jobs:
     install-firewalld:
         runs-on: ubuntu-latest
         steps: 
+              
             - name: update linux machine
-              run: echo "updating machine"
+              run: ls 
 
             - name: install firewall
               run: sudo apt install -y firewalld
