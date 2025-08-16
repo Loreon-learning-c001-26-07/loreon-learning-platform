@@ -10,10 +10,10 @@ jobs:
             - name: update linux machine
               run: echo "updating machine"
 
-            - name: update linux machine
+            - name: install firewall
               run: sudo apt install -y firewalld
 
-            - name: update linux machine
+            - name: install mysql 
               run: sudo apt install -y mysql-server
             
 
