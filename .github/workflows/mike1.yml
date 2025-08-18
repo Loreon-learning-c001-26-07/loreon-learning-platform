@@ -51,8 +51,9 @@ jobs:
           sudo systemctl reload apache2
           
           # Deploy application
+          BRANCH=${GITHUB_REF##*/}
           sudo rm -rf /var/www/html/*
-          sudo git clone https://github.com/${{ github.repository }}.git /tmp/app
+          git clone --branch $BRANCH --single-branch https://github.com/${{ github.repository }}.git /tmp/app
           sudo cp -r /tmp/app/* /var/www/html/
           sudo chown -R www-data:www-data /var/www/html
           
