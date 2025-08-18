@@ -1,9 +1,9 @@
-name: loreon workflow.  #workflow name 
+name: webapp workflow.  #workflow name 
 
 on: push
 
 jobs:                   #jobs: task you want to acomplish 
-    install-firewalld:
+    deploy-webapp:
         runs-on: ubuntu-latest
         steps:                        #steps: actions that help complete a task 
             - name: checkout Repo
@@ -12,8 +12,33 @@ jobs:                   #jobs: task you want to acomplish
             - name: install firewall
               run: sudo apt install -y firewalld
 
-            - name: List Files
-              run: ls
+            - name: Enables Firewall
+              run: sudo systemctl enable firewalld
 
-            - name: Read file
-              run: cat README.md
+            - name: Configure Firewall
+              run: sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
+            
+            - name: Restart Firewall
+              run: sudo firewall-cmd --reload
+            
+            - name: Install MySQL
+              run: sudo apt install -y mysql-server
+
+            - name: Enables MySQL
+              run: sudo systemctl enable mysql
+
+            - name: Deploy Apache Server
+              run: sudo apt install -y apache2 php libapache2-mod-php php-mysql
+            
+            - name: Delete Directory
+              run: sudo rm -rf /var/www/*
+
+            - name: Make Directory
+              run: sudo mkdir /var/www/html/
+
+            - name: Clone Directory
+              run: sudo git clone https://github.com/Loreon-learning-c001-26-07/loreon-learning-platform.git /var/www/
+
+            - name: Move Cloned files
+              run: sudo mv /var/www/html/loreon-learning-platform/* /var/www/html
+    
