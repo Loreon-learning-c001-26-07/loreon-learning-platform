@@ -1,0 +1,12 @@
+name: Mike workflow
+
+on: 
+    push 
+    Mike_deploy
+
+jobs: 
+  first job:
+    runs on: ubuntu-latest
+    steps:
+    - name: checkout Repo
+      uses: actions/checkout
