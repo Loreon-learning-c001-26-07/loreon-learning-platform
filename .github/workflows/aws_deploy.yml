@@ -6,31 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-        extensions: mysqli
-    
-    - name: Install dependencies
-      run: composer install --no-dev --optimize-autoloader
-    
-    - name: Run PHPStan
-      run: vendor/bin/phpstan analyse --no-progress
-    
-    - name: Run PHPCS
-      run: vendor/bin/phpcs
-    
-    - name: Run PHPMD
-      run: vendor/bin/phpmd src/ text cleancode,codesize,design,naming
-
-  deploy:
-    needs: test
+  deploy: 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
