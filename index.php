@@ -57,10 +57,10 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <div class="col-md-9 p0">
                             <ul class="nav navbar-nav main_nav">
-                              <li><a href="#">DevOps</a></li>
-                              <li><a href="#">Cybersecurity</a></li>
-                                <li><a href="#">AI/ML</a></li>
-                                <li><a href="#">Cloud</a></li>
+                              <li><a href="#">AIOPS</a></li>
+                              <li><a href="#">Economics</a></li>
+                                <li><a href="#">Prompt Engineering</a></li>
+                                <li><a href="#">Data</a></li>
                                 <li><a href="#">FinOps</a></li>
                                 <li><a href="#">Contact us</a></li>
                             </ul>
@@ -82,7 +82,7 @@
             <div class="slider_inner">
                 <div class="camera_caption">
                     <h2 class="wow fadeInUp animated">Master Tech Skills</h2>
-                    <h5 class="wow fadeIn animated" data-wow-delay="0.3s">Learn from industry experts</h5>
+                    <h5 class="wow fadeIn animated" data-wow-delay="0.3s">We are industry experts</h5>
                     <a class="learn_mor wow fadeInU" data-wow-delay="0.6s" href="#course-list">Explore Courses!</a>
                 </div>
             </div>
@@ -91,7 +91,7 @@
 
         <section class="best_business_area row">
             <div class="check_tittle wow fadeInUp" data-wow-delay="0.7s" id="course-list">
-                <h2>Available Courses</h2>
+                <h2>All Courses are live</h2>
             </div>
             <div class="row it_works">
               <?php
