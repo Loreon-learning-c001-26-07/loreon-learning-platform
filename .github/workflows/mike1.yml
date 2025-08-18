@@ -1,0 +1,70 @@
+name: Deploy to build server 
+
+on:
+  push:
+    branches: [ Mike_deploy ]
+
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      #step 1: copy source code to new ubuntu machine 
+    - name: checkout Repo
+      uses: actions/checkout@v4
+    
+    - name: connect to AWS
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.AWS_HOST }}
+        username: ${{ secrets.AWS_USER }}
+        key: ${{ secrets.AWS_SSH_KEY }}
+        script: |
+          # Update system
+          sudo apt update
+          
+          # Install firewall if not exists
+          sudo apt install -y ufw
+          sudo ufw allow 22
+          sudo ufw allow 80
+          sudo ufw allow 3306
+          sudo ufw --force enable
+          
+          # Install MySQL if not exists
+          sudo apt install -y mysql-server
+          sudo systemctl start mysql
+          sudo systemctl enable mysql
+          
+          # Configure database
+          sudo mysql -e "CREATE DATABASE IF NOT EXISTS learningdb;"
+          sudo mysql -e "CREATE USER IF NOT EXISTS 'learnuser'@'localhost' IDENTIFIED BY 'learnpassword';"
+          sudo mysql -e "GRANT ALL PRIVILEGES ON learningdb.* TO 'learnuser'@'localhost';"
+          sudo mysql -e "FLUSH PRIVILEGES;"
+          
+          # Install web server
+          sudo apt install -y apache2 php libapache2-mod-php php-mysql git
+          sudo systemctl start apache2
+          sudo systemctl enable apache2
+          
+          # Configure Apache
+          sudo sed -i 's/index.html/index.php/g' /etc/apache2/mods-enabled/dir.conf
+          sudo systemctl reload apache2
+          
+          # Deploy application
+          sudo rm -rf /var/www/html/*
+          sudo git clone sudo git clone --branch Mike_deploy https://github.com/Loreon-learning-c001-26-07/loreon-learning-platform.git /tmp/app
+          sudo cp -r /tmp/app/* /var/www/html/
+          sudo chown -R www-data:www-data /var/www/html
+          
+          # Create .env file
+          sudo tee /var/www/html/.env > /dev/null <<EOF
+          DB_HOST=localhost
+          DB_USER=learnuser
+          DB_PASSWORD=learnpassword
+          DB_NAME=learningdb
+          EOF
+          
+          # Load database data
+          sudo mysql learningdb < /var/www/html/db-load-script.sql
+          
+          # Test deployment
+          curl -f http://localhost || exit 1
