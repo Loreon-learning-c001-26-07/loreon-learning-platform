@@ -1,13 +1,15 @@
 
 name: test_deployment
 
-on: push 
+on: push # intervals or when make a change 
 
 jobs: 
     install-firewalld:
         runs-on: ubuntu-latest
         steps: 
-              
+            - name: clone repo content 
+              uses: actions/checkout@v5
+
             - name: update linux machine
               run: ls 
 
