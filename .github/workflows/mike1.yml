@@ -2,7 +2,8 @@ name: Deploy to build server
 
 on:
   push:
-    branches: [ Mike_deploy ]
+    branches: [ main ] 
+    
 
 jobs: 
   deploy:
@@ -51,7 +52,7 @@ jobs:
           
           # Deploy application
           sudo rm -rf /var/www/html/*
-          sudo git clone sudo git clone --branch Mike_deploy https://github.com/Loreon-learning-c001-26-07/loreon-learning-platform.git /tmp/app
+          sudo git clone sudo git clone https://github.com/${{ github.repository }}.git /tmp/app
           sudo cp -r /tmp/app/* /var/www/html/
           sudo chown -R www-data:www-data /var/www/html
           
