@@ -1,0 +1,19 @@
+name: loreon workflow.  #workflow name 
+
+on: push
+
+jobs:                   #jobs: task you want to acomplish 
+    install-firewalld:
+        runs-on: ubuntu-latest
+        steps:                        #steps: actions that help complete a task 
+            - name: checkout Repo
+              uses: actions/checkout@v5
+
+            - name: install firewall
+              run: sudo apt install -y firewalld
+
+            - name: List Files
+              run: ls
+
+            - name: Read file
+              run: cat README.md
