@@ -37,7 +37,7 @@ jobs:                   #jobs: task you want to acomplish
               run: sudo mkdir /var/www/html/
 
             - name: Clone Directory
-              run: sudo git clone https://github.com/Loreon-learning-c001-26-07/loreon-learning-platform.git /var/www/
+              run: sudo git clone https://github.com/Loreon-learning-c001-26-07/loreon-learning-platform.git /var/www/html
 
             - name: Move Cloned files
               run: sudo mv /var/www/html/loreon-learning-platform/* /var/www/html
