@@ -61,7 +61,7 @@
                               <li><a href="#">Economics</a></li>
                                 <li><a href="#">Prompt Engineering</a></li>
                                 <li><a href="#">Data</a></li>
-                                <li><a href="#">FinOps</a></li>
+                                <li><a href="#">FinOpss</a></li>
                                 <li><a href="#">Contact us</a></li>
                             </ul>
                         </div>
